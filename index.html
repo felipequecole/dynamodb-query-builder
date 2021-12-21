@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- <link rel="stylesheet" type="text/css" href = "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.2/semantic.min.css"> -->
+    <!-- <link rel="stylesheet" type="text/css" href = "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/components/form.css"> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- <script src = "https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/semantic.min.js"> </script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.10/components/form.js"></script>
+
+    <link
+      async
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/semantic-ui@2/dist/semantic.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/gh/FThompson/FormPersistence.js@2.0.6/form-persistence.min.js"></script>
+  </head>
+
+  <body>
+    <div class="ui centered grid">
+      <div class="ten wide column">
+        <h1>DynamoDB query builder</h1>
+
+        <form id="form" class="ui form">
+          <input type="number" id="queryCount" value=1 style="display: none">
+          <h4 class="ui dividing header">Table Information</h4>
+          <div class="two fields">
+            <div class="field">
+              <label>Table name</label>
+              <div class="field">
+                <input type="text" name="tableName" placeholder="Table Name" />
+              </div>
+            </div>
+
+            <div class="field">
+              <label>Region</label>
+              <select name="region" id="region" class="ui fluid dropdown">
+                <option value="">Region</option>
+                <option value="us-east-1">us-east-1</option>
+                <option value="us-west-2">us-west-2</option>
+              </select>
+            </div>
+          </div>
+          <h4 class="ui dividing header">Query</h4>
+          <div id="query">
+            <div id="query#1">
+              <div class="three fields">
+                <div class="field">
+                  <label>Field</label>
+                  <div class="field">
+                    <input
+                      type="text"
+                      name="field#1"
+                      placeholder="Field Name"
+                    />
+                  </div>
+                </div>
+                <div class="field">
+                  <label>Type</label>
+                  <select
+                    name="dataType#1"
+                    id="dataType#0"
+                    class="ui fluid dropdown"
+                  >
+                    <option value="">Data Type</option>
+                    <option value="S">String</option>
+                    <option value="N">Number</option>
+                    <option value="BOOL">Boolean</option>
+                    <option value="B">Byte</option>
+                    <option value="S">Date (ISO-8601)</option>
+                  </select>
+                </div>
+
+                <div class="field">
+                  <label>Value</label>
+                  <div class="field">
+                    <input
+                      type="text"
+                      name="value#1"
+                      placeholder="First Name"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+          </div>
+
+          <div
+            name="addParam"
+            id="addParam"
+            class="ui button blue"
+            tabindex="0"
+          >
+            Add parameter
+          </div>
+          <div
+            name="removeParam"
+            id="removeParam"
+            class="ui button red disabled"
+            tabindex="1"
+          >
+            Remove parameter
+          </div>
+          <h4 class="ui dividing header">Build</h4>
+          <div class="ui primary submit button green" tabindex="2">Build</div>
+        </form>
+
+        <h4 class="ui dividing header">Result</h4>
+
+        <div class="ui form">
+          <textarea id="result" name="result" rows="4" cols="50"  readonly>Result will be here</textarea>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <script src="./scripts/handling.js"></script>
+  <script src="./scripts/magic.js"></script>
+</html>
