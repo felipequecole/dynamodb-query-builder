@@ -1,6 +1,6 @@
-
 $(document).ready(function () {
-    persist()
+    populateRegions();
+    persist();
     reinitilizeForm(1);
 });
 
@@ -34,6 +34,12 @@ $('#removeParam').on("click", function () {
         $('#removeParam').addClass('disabled');
     }
 });
+
+function populateRegions() {
+    let options = regions.map(region => buildOption(region));
+    let regionSelect = $('#region');
+    regionSelect.append(options);
+}
 
 function buildQuery(id) {
     return `
@@ -107,7 +113,18 @@ function setCount(val) {
     $('#queryCount').val(val);
 }
 
-function persist() { 
-    let form = document.getElementById("form");
-    FormPersistence.persist(form);
+function persist() {
+    try {
+        let form = document.getElementById("form");
+        FormPersistence.persist(form);
+    } catch (e) {
+        console.warn(`Cannot use persister, you are probably using Incognito Mode. ${e.message}`);
+    }
+}
+
+function buildOption(region) {
+    console.log(region);
+    let regionName = region['Region Name'];
+    let regionCode = region['Code'];
+    return `<option value="${regionCode}">${regionName}</option>`
 }
