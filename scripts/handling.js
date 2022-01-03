@@ -16,11 +16,9 @@ $('#addParam').on("click", function () {
 
 
 $('#removeParam').on("click", function () {
-    console.log('remove');
     let queryCount = getCount();
     if (queryCount > 1) {
         let queryToBeRemoved = `query#${queryCount}`;
-        console.warn(`Removing ${queryToBeRemoved}`);
         document.getElementById(queryToBeRemoved).remove();
         queryCount = queryCount - 1;
         setCount(queryCount);
@@ -123,7 +121,6 @@ function persist() {
 }
 
 function buildOption(region) {
-    console.log(region);
     let regionName = region['Region Name'];
     let regionCode = region['Code'];
     return `<option value="${regionCode}">${regionName}</option>`
